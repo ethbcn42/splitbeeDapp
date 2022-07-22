@@ -86,7 +86,7 @@ export default function CallToActionWithAnnotation() {
               </Text>
             </Box>
           </Stack>
-          <Colabs />
+          {/* <Colabs /> */}
         </Stack>
       </Container>
     </MainLayout >

@@ -3,12 +3,14 @@ import {
   Box,
   Flex,
   HStack,
+  Text,
 } from '@chakra-ui/react';
 //import ConnectButtonWeb3 from './Web3/ConnectButton';
 
 import dynamic from 'next/dynamic';
 
 import Image from 'next/image';
+import Link from 'next/link';
 import Logo from './Logo';
 import NetworkSelector from './Web3/NetworkSelector';
 
@@ -24,6 +26,11 @@ const Header = () => {
         <Flex h={16} alignItems="center" justifyContent={'space-between'}>
           <Logo />
           <HStack spacing={8} alignItems={'center'}>
+            <Link href={"/setup"}>
+              <Text cursor={"pointer"} as="a">
+                Setup
+              </Text>
+            </Link>
             <NetworkSelector />
             <ConnectButtonWeb3/>
           </HStack>

@@ -2,10 +2,10 @@ import Head from 'next/head';
 
 
 const SEO = ({
-    title = 'Kindly',
-    description = 'Kindly its a free, friendly & open-source platform that automatizes donations to non-profit organizations, which allows NFT creators to deduct taxes.',
-    images = [{ url: "https://kindlyweb3.vercel.app/logo.png" }],
-    url = "https://kindlyweb3.vercel.app",
+    title = 'Splitbee',
+    description = 'Splitbee its a free, friendly & open-source platform that automatizes the process of splitting prizes of hackathons between mates and perform donations to non-profit organizations.',
+    images = [{ url: "https://splitbee.vercel.app/logo.png" }],
+    url = "https://splitbee.vercel.app",
 }) => {
     return (
         <Head>

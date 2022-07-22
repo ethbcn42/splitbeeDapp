@@ -48,6 +48,7 @@ export const Web3ConnectButton = () => {
             onClick={handleConnect}
             display={'flex'}
             alignItems={'center'}
+            paddingX={10}
         >
             <Text
                 mt={'3px'}
