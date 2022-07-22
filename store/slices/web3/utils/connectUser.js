@@ -10,7 +10,7 @@ import { SPLITBEE_TOKEN, networks } from '@/utils/constants';
 /*                      UTILS                                             */
 /**************************************************************************/
 
-const networksOLD ={
+const networksOLD = {
     137: {
         chainName: "Polygon",
         chainId: "0x89",
@@ -57,7 +57,7 @@ const networksOLD ={
         nativeCurrency: {
             name: "CRONOS",
             symbol: "CRO",
-            decimals: 18, 
+            decimals: 18,
         },
         blockExplorerUrls: ["https://cronoscan.com/"],
         logo: "/web3/cronos.svg",
@@ -96,19 +96,31 @@ async function getNetwork(provider) {
 
 export const switchNetwork = async (ethereum, chainId) => {
     try {
+        console.log({ chainId })
+        store.dispatch(setLoading(true));
         await ethereum.request({
             method: "wallet_switchEthereumChain",
-            params: [{ chainId }],
+            params: [{ chainId: networks[chainId].chainId }],
         });
+        store.dispatch(setNetwork(chainId));
+        store.dispatch(setLoading(false));
     } catch (error) {
         if (error.code === 4902) {
             try {
+                console.log({ network: networks[chainId], chain: chainId })
                 await ethereum.request({
                     method: "wallet_addEthereumChain",
-                    params: [
-                        networks[chainId],
+                    params: [{
+                        chainName: networks[chainId].chainName,
+                        chainId: networks[chainId].chainId,
+                        rpcUrls: networks[chainId].rpcUrls,
+                        nativeCurrency: networks[chainId].nativeCurrency,
+                        blockExplorerUrls: networks[chainId].blockExplorerUrls,
+                    }
                     ],
                 });
+                store.dispatch(setNetwork(chainId));
+                store.dispatch(setLoading(false));
             } catch (error) {
                 alert(error.message);
             }
@@ -136,15 +148,14 @@ export const connectUser = async (window) => {
         let token = localStorage.getItem(SPLITBEE_TOKEN) || null
         let network = null
         if (token == null || !isValidToken(token)) {
-            localStorage.removeItem(SPLITBEE_TOKEN)
-            await requestAccount(ethereum)
-            const provider = getProvider(ethereum)
-            const signer = await getSigner(provider)
-            const address = await getAccount(signer)
-            network = await getNetwork(provider)
-            token = await Web3Token.sign(async msg => await signer.signMessage(msg), '1m')
-            localStorage.setItem(SPLITBEE_TOKEN, token)
-            console.log({ tokenINSIDE: token })
+            localStorage.removeItem(SPLITBEE_TOKEN);
+            await requestAccount(ethereum);
+            const provider = getProvider(ethereum);
+            const signer = await getSigner(provider);
+            const address = await getAccount(signer);
+            network = await getNetwork(provider);
+            token = await Web3Token.sign(async msg => await signer.signMessage(msg), '1m');
+            localStorage.setItem(SPLITBEE_TOKEN, token);
         }
         console.log({ tokenOUTSIDE: token })
         const res = await fetch('/api/v1/user/connect', {
@@ -154,14 +165,14 @@ export const connectUser = async (window) => {
                 'Authorization': `Bearer ${token}`
             }
         })
-        const {user} = await res.json()
+        const { user } = await res.json()
         let payload = {
-            address: user.address ,
+            address: user.address,
             token,
             network: network?.chainId || null,
-            loading: false
+            loading: false,
+            isConnected: true,
         }
-        console.log({ payload, user })
         store.dispatch(connect(payload))
         window.localStorage.setItem(SPLITBEE_TOKEN, token)
         return { token, user }

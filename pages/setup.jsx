@@ -14,39 +14,11 @@ import UpdateSplitter from '@components/UpdateSplitter';
 import CreateSplitter from '@components/CreateSplitter';
 
 const setup = () => {
-    const { user, isAuthenticated, isWeb3Enabled, web3, enableWeb3 } = useMoralis()
-    const router = useRouter()
-    const [signer, setSigner] = useState(null)
-
-    useEffect(() => {
-        if (!isWeb3Enabled) {
-            enableWeb3();
-        }
-    }, [isWeb3Enabled]);
-
-    useEffect(() => {
-        if (web3) {
-            const web3Signer = web3.getSigner();
-            setSigner(web3Signer);
-        }
-        return () => setSigner(null);
-    }, [web3]);
-
-    //const { contract: kindly } = useContract({ signer })
-
-    useEffect(() => {
-        if (isAuthenticated === false && isWeb3Enabled) router.replace("/");
-        // eslint-disable-next-line react-hooks/exhaustive-deps
-    }, [isAuthenticated, isWeb3Enabled]);
-    const { registrationAddress, isRegistered } = useCheckAlreadyRegistered({ signer })
-
-    if (isRegistered === false) {
-        return <CreateSplitter signer={signer}/>
-    }
-
-    if (isRegistered === true) {
-        return <UpdateSplitter signer={signer} registrationAddress={registrationAddress}  />
-    }
+    return (
+        <MainLayout>
+            <h1>SET UP!</h1>
+        </MainLayout>
+    )
 }
 
 export default setup
