@@ -15,3 +15,59 @@ export default {
     network,
     child
 }
+
+export const SPLITBEE_TOKEN = "SPLITBEE_TOKEN"
+export const networks = {
+    137: {
+        chainName: "Polygon",
+        chainId: "0x89",
+        rpcUrls: ["polygon-rpc.com"],
+        nativeCurrency: {
+            name: "Matic",
+            symbol: "Matic",
+            decimals: 18,
+        },
+        blockExplorerUrls: ["https://polygonscan.com"],
+        logo: "/web3/polygon.svg",
+        img: "/web3/polygon.png",
+    },
+    80001: {
+        chainName: "Mumbai",
+        chainId: "0x13881",
+        rpcUrls: ["https://rpc-mumbai.matic.today"],
+        nativeCurrency: {
+            name: "Matic",
+            symbol: "Matic",
+            decimals: 18,
+        },
+        blockExplorerUrls: ["https://explorer-mumbai.maticvigil.com"],
+        logo: "/web3/mumbai.svg",
+        img: "/web3/mumbai.png"
+    },
+    1: {
+        chainName: "Ethereum Mainnet",
+        chainId: "0x1",
+        rpcUrls: ["https://mainnet.infura.io/v3/9db936720a2743b0a033001e1276fb60"],
+        nativeCurrency: {
+            name: "Ether",
+            symbol: "ETH",
+            decimals: 18,
+        },
+        blockExplorerUrls: ["https://etherscan.io"],
+        logo: "/web3/ethereum.svg",
+        img: "/web3/ethereum.png"
+    },
+    25: {
+        chainName: "Cronos",
+        chainId: "0x19",
+        rpcUrls: ["https://evm.cronos.org"],
+        nativeCurrency: {
+            name: "CRONOS",
+            symbol: "CRO",
+            decimals: 18, 
+        },
+        blockExplorerUrls: ["https://cronoscan.com/"],
+        logo: "/web3/cronos.svg",
+        img: "/web3/cronos.png"
+    }
+}

@@ -4,6 +4,9 @@ import { ToastContainer } from "react-toastify";
 
 
 import SEOHeader from '@components/SEO';
+import { store } from "@store";
+import { Provider } from "react-redux";
+
 
 import 'react-toastify/dist/ReactToastify.css';
 
@@ -12,10 +15,7 @@ function MyApp({ Component, pageProps}) {
   const { seo } = pageProps;
 
   return (
-    <MoralisProvider
-      appId={process.env.NEXT_PUBLIC_APP_ID}
-      serverUrl={process.env.NEXT_PUBLIC_SERVER_URL}
-    >
+    <Provider store={store}>
       <ChakraProvider>
         <ToastContainer
           position="top-right"
@@ -31,7 +31,7 @@ function MyApp({ Component, pageProps}) {
         <SEOHeader {...seo}/>
         <Component {...pageProps} />
       </ChakraProvider>
-    </MoralisProvider>
+    </Provider>
   )
 }
 

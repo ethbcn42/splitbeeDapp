@@ -10,6 +10,7 @@ import dynamic from 'next/dynamic';
 
 import Image from 'next/image';
 import Logo from './Logo';
+import Web3ConnectButton from './Web3/Web3ConnectButton';
 
 // dynamic import for web3 connect button
 const ConnectButtonWeb3 = dynamic(() => import('./Web3/ConnectButton'), {
@@ -23,8 +24,8 @@ const Header = () => {
         <Flex h={16} alignItems="center" justifyContent={'space-between'}>
           <Logo />
           <HStack spacing={8} alignItems={'center'}>
-            <ConnectButtonWeb3/>
-
+            {/* <ConnectButtonWeb3/> */}
+            <Web3ConnectButton />
           </HStack>
         </Flex>
       </Box>
