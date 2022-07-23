@@ -1,7 +1,7 @@
 import { ethers } from 'ethers'
 import detectEthereumProvider from '@metamask/detect-provider'
 import { store } from '@/store'
-import { connect, setLoading, setError } from '../web3.slice'
+import { connect, setLoading, setError, selectNetwork } from '../web3.slice'
 import Web3Token from "web3-token"
 import { SPLITBEE_TOKEN, networks } from '@/utils/constants';
 
@@ -100,26 +100,23 @@ export const switchNetwork = async (ethereum, chainId) => {
         store.dispatch(setLoading(true));
         await ethereum.request({
             method: "wallet_switchEthereumChain",
-            params: [{ chainId: networks[chainId].chainId }],
+            params: [{ chainId }],
         });
-        store.dispatch(setNetwork(chainId));
+        store.dispatch(selectNetwork(parseInt(chainId)));
         store.dispatch(setLoading(false));
     } catch (error) {
         if (error.code === 4902) {
             try {
-                console.log({ network: networks[chainId], chain: chainId })
+                console.log({ network: networks[parseInt(chainId)], chain: chainId })
+                const {logo, img, ...network} = networks[parseInt(chainId)]
                 await ethereum.request({
                     method: "wallet_addEthereumChain",
                     params: [{
-                        chainName: networks[chainId].chainName,
-                        chainId: networks[chainId].chainId,
-                        rpcUrls: networks[chainId].rpcUrls,
-                        nativeCurrency: networks[chainId].nativeCurrency,
-                        blockExplorerUrls: networks[chainId].blockExplorerUrls,
+                        ...network
                     }
                     ],
                 });
-                store.dispatch(setNetwork(chainId));
+                store.dispatch(selectNetwork(ethers.utils.hexValue(chainId)));
                 store.dispatch(setLoading(false));
             } catch (error) {
                 alert(error.message);

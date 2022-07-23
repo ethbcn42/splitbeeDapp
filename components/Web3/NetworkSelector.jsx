@@ -54,7 +54,7 @@ export const NetworkSelector = () => {
                       key={chainId } 
                       width="100%"
                       mb="2"
-                      onClick={() => {
+                      onClick={(e) => {
                         switchNet(chainId); 
                         onClose();
                         setSelectNetwork({logo, text: name})
