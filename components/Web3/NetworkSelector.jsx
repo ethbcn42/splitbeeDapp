@@ -1,17 +1,24 @@
 import { useSelector } from 'react-redux';
-import { Box, Button, HStack, Select, SelectField, Text, useToast, VStack } from '@chakra-ui/react';
+import {  Button,  useToast, ModalBody, ModalCloseButton, useDisclosure,
+    Modal, ModalOverlay, ModalContent, ModalHeader
+} from '@chakra-ui/react';
 import { networks } from '@/utils/constants';
-import { FaEthereum } from 'react-icons/fa';
 import { switchNetwork } from '@/store/slices/web3/utils/connectUser';
-
-
+import Image from 'next/image';
+import { useState } from "react";
 
 export const NetworkSelector = () => {
     const toast = useToast()
     const { address, network } = useSelector(state => state.web3)
+    const { isOpen, onOpen, onClose } = useDisclosure();
+    const [selectNetwork, setSelectNetwork] = useState(
+      {logo: undefined,
+      text: 'Choose network'
+      }
+    );
 
-    const switchNet = async (e) => {
-        const chainId = e.target.value;
+    const switchNet = async (chainId) => {
+        //TOFIX: no está saltando metamask :(
         if (!window.ethereum) {
             return toast({
                 title: 'Metamask is not installed',
@@ -26,18 +33,38 @@ export const NetworkSelector = () => {
     }
 
     return (
-        <Select onChange={(e)=>switchNet(e)}>
-            {Object.keys(networks).map((chain) => {
-                const { chainName:name, chainId, logo } = networks[chain];
-                return (
-                    <option key={chainId} value={chain} >
-                        {name}
-                    </option>
-                )
-            })}
 
-
-        </Select>
+        <>
+        <Button 
+          onClick={onOpen} 
+          leftIcon={selectNetwork.logo ? <Image width="20" height="20" src={selectNetwork.logo}/> : null}
+        >
+          {selectNetwork.text}
+        </Button>
+        <Modal isOpen={isOpen} onClose={onClose}>
+          <ModalOverlay />
+          <ModalContent>
+            <ModalHeader>Choose your prefer network</ModalHeader>
+            <ModalCloseButton />
+            <ModalBody>
+                {Object.keys(networks).map((chain) => {
+                    const { chainName:name, chainId, logo } = networks[chain];
+                    return(<Button 
+                      leftIcon={<Image width="20" height="20" src={logo}/>} 
+                      key={chainId } 
+                      width="100%"
+                      mb="2"
+                      onClick={() => {
+                        switchNet(chainId); 
+                        onClose();
+                        setSelectNetwork({logo, text: name})
+                      }}
+                    >{name}</Button>)    
+                })}
+           </ModalBody>
+          </ModalContent>
+        </Modal>
+      </>
     )
 };
 export default NetworkSelector;
