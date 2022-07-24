@@ -94,6 +94,24 @@ async function getNetwork(provider) {
     return network
 }
 
+export const addNetwork = async (ethereum, chainId) => {
+    try {
+        store.dispatch(setLoading(true));
+        const { logo, img, ...network } = networks[parseInt(chainId)]
+        await ethereum.request({
+            method: "wallet_addEthereumChain",
+            params: [{
+                ...network
+            }],
+        });
+        store.dispatch(selectNetwork(ethers.utils.hexValue(chainId)));
+        store.dispatch(setLoading(false));
+    } catch (error) {
+        //TODO: handle error with toastify
+        alert(error.message);
+    }
+}
+
 export const switchNetwork = async (ethereum, chainId) => {
     try {
         console.log({ chainId })
@@ -108,7 +126,7 @@ export const switchNetwork = async (ethereum, chainId) => {
         if (error.code === 4902) {
             try {
                 console.log({ network: networks[parseInt(chainId)], chain: chainId })
-                const {logo, img, ...network} = networks[parseInt(chainId)]
+                const { logo, img, ...network } = networks[parseInt(chainId)]
                 await ethereum.request({
                     method: "wallet_addEthereumChain",
                     params: [{
@@ -119,6 +137,7 @@ export const switchNetwork = async (ethereum, chainId) => {
                 store.dispatch(selectNetwork(ethers.utils.hexValue(chainId)));
                 store.dispatch(setLoading(false));
             } catch (error) {
+                //TODO: handle error with toastify
                 alert(error.message);
             }
         }
