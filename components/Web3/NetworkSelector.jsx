@@ -16,7 +16,7 @@ export const NetworkSelector = () => {
     const [selectNetwork, setSelectNetwork] = useState(
         {
             logo: undefined,
-            text: "Choose a network",
+            text: "👍 🕸",
         }
     );
 
@@ -29,7 +29,7 @@ export const NetworkSelector = () => {
             setSelectNetwork({
                 ...selectNetwork,
                 logo: networks[chainId]?.logo ?? undefined,
-                text: networks[chainId]?.chainName ?? "Choose a network",
+                text: networks[chainId]?.chainName ?? "👍 🕸",
             })
         }
         asyncCall();
