@@ -23,8 +23,8 @@ const NetworkSelector = dynamic(() => import('./Web3/NetworkSelector'), {
 });
 
 const Header = () => {
-    return (
-<>
+  return (
+    <>
       <Box shadow={"lg"} px={4}>
         <Flex h={16} alignItems="center" justifyContent={'space-between'}>
           <Logo />
@@ -34,13 +34,15 @@ const Header = () => {
                 Setup
               </Text>
             </Link>
-            <NetworkSelector />
-            <ConnectButtonWeb3/>
+            <HStack spacing={2} alignItems={'center'}>
+              <NetworkSelector />
+              <ConnectButtonWeb3 />
+            </HStack>
           </HStack>
         </Flex>
       </Box>
     </>
-    );
+  );
 }
 
 export default Header;

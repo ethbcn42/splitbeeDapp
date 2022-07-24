@@ -24,7 +24,7 @@ export const NetworkSelector = () => {
         if (!window.ethereum) {
             return toast({
                 title: 'Metamask is not installed',
-                description: 'Please install Metamask',
+                description: 'Please install Metamask to choose a network',
                 status: 'error',
                 duration: 4200,
                 isClosable: true,
@@ -57,7 +57,7 @@ export const NetworkSelector = () => {
         if (!window.ethereum) {
             return toast({
                 title: 'Metamask is not installed',
-                description: 'Please install Metamask',
+                description: 'Please install Metamask to switch network',
                 status: 'error',
                 duration: 4200,
                 isClosable: true,
@@ -71,7 +71,7 @@ export const NetworkSelector = () => {
         if (!window.ethereum) {
             return toast({
                 title: 'Metamask is not installed',
-                description: 'Please install Metamask',
+                description: 'Please install Metamask to add network',
                 status: 'error',
                 duration: 4200,
                 isClosable: true,
