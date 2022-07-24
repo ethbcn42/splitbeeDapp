@@ -28,8 +28,8 @@ export const NetworkSelector = () => {
             console.log(chainId)
             setSelectNetwork({
                 ...selectNetwork,
-                logo: networks[chainId].logo,
-                text: networks[chainId].chainName,
+                logo: networks[chainId]?.logo ?? undefined,
+                text: networks[chainId]?.chainName ?? "Choose a network",
             })
         }
         asyncCall();
