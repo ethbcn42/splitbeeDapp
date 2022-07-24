@@ -95,7 +95,7 @@ export async function getNetwork(provider) {
     return network
 }
 
-export const addNetwork = async (ethereum, chainId) => {
+export const addNetwork = async (ethereum, chainId, toast) => {
     try {
         store.dispatch(setLoading(true));
         const { logo, img, ...network } = networks[parseInt(chainId)]
@@ -108,12 +108,21 @@ export const addNetwork = async (ethereum, chainId) => {
         store.dispatch(selectNetwork(ethers.utils.hexValue(chainId)));
         store.dispatch(setLoading(false));
     } catch (error) {
-        //TODO: handle error with toastify
+        if (toast) {
+            return toast({
+                title: `Error: ${error.code}`,
+                description: error.message,
+                status: 'error',
+                duration: 4200,
+                isClosable: true,
+                position: 'top'
+            })
+        }
         alert(error.message);
     }
 }
 
-export const switchNetwork = async (ethereum, chainId) => {
+export const switchNetwork = async (ethereum, chainId, toast) => {
     try {
         console.log({ chainId })
         store.dispatch(setLoading(true));
@@ -138,7 +147,16 @@ export const switchNetwork = async (ethereum, chainId) => {
                 store.dispatch(selectNetwork(ethers.utils.hexValue(chainId)));
                 store.dispatch(setLoading(false));
             } catch (error) {
-                //TODO: handle error with toastify
+                if (toast) {
+                    return toast({
+                        title: `Error: ${error.code}`,
+                        description: error.message,
+                        status: 'error',
+                        duration: 4200,
+                        isClosable: true,
+                        position: 'top'
+                    })
+                }
                 alert(error.message);
             }
         }

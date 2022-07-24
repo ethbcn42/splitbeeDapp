@@ -64,7 +64,7 @@ export const NetworkSelector = () => {
                 position: 'top'
             })
         }
-        await switchNetwork(window.ethereum, chainId);
+        await switchNetwork(window.ethereum, chainId, toast);
     }
     const addNet = async (chainId) => {
         //TOFIX: no está saltando metamask :(
@@ -78,7 +78,7 @@ export const NetworkSelector = () => {
                 position: 'top'
             })
         }
-        await addNetwork(window.ethereum, chainId);
+        await addNetwork(window.ethereum, chainId, toast);
     }
 
 
