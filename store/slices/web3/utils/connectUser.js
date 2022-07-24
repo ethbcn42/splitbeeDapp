@@ -71,6 +71,7 @@ async function requestAccount(ethereum) {
 }
 
 export function getProvider(ethereum) {
+    if (!ethereum) return null;
     const provider = new ethers.providers.Web3Provider(ethereum)
     console.log({ provider })
     return provider

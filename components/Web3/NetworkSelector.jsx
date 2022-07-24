@@ -22,6 +22,16 @@ export const NetworkSelector = () => {
 
     useEffect(() => {
         async function asyncCall() {
+            if (!window.ethereum) {
+                return toast({
+                    title: 'Metamask is not installed',
+                    description: 'Please install Metamask',
+                    status: 'error',
+                    duration: 4200,
+                    isClosable: true,
+                    position: 'top'
+                  })
+            }
             const net = await getNetwork(provider);
             console.log({ net });
             const chainId = parseInt(net.chainId);
