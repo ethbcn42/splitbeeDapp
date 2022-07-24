@@ -20,17 +20,24 @@ export const NetworkSelector = () => {
         }
     );
 
+    function handleOpen() {
+        if (!window.ethereum) {
+            return toast({
+                title: 'Metamask is not installed',
+                description: 'Please install Metamask',
+                status: 'error',
+                duration: 4200,
+                isClosable: true,
+                position: 'top'
+            })
+        }
+        onOpen();
+    }
+
     useEffect(() => {
         async function asyncCall() {
             if (!window.ethereum) {
-                return toast({
-                    title: 'Metamask is not installed',
-                    description: 'Please install Metamask',
-                    status: 'error',
-                    duration: 4200,
-                    isClosable: true,
-                    position: 'top'
-                  })
+                return;
             }
             const net = await getNetwork(provider);
             console.log({ net });
@@ -81,7 +88,7 @@ export const NetworkSelector = () => {
                 size={'sm'}
                 p=".5"
 
-                onClick={onOpen}
+                onClick={handleOpen}
             >
                 {selectNetwork.logo ? <img width={42} src={selectNetwork.logo} /> : selectNetwork.text}
             </Button>
