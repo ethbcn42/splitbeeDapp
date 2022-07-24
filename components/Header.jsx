@@ -12,10 +12,13 @@ import dynamic from 'next/dynamic';
 import Image from 'next/image';
 import Link from 'next/link';
 import Logo from './Logo';
-import NetworkSelector from './Web3/NetworkSelector';
 
 // dynamic import for web3 connect button
 const ConnectButtonWeb3 = dynamic(() => import('./Web3/Web3ConnectButton'), {
+  ssr: false,
+});
+
+const NetworkSelector = dynamic(() => import('./Web3/NetworkSelector'), {
   ssr: false,
 });
 
