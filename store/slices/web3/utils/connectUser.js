@@ -70,7 +70,7 @@ async function requestAccount(ethereum) {
     return await ethereum.request({ method: 'eth_requestAccounts' });
 }
 
-function getProvider(ethereum) {
+export function getProvider(ethereum) {
     const provider = new ethers.providers.Web3Provider(ethereum)
     console.log({ provider })
     return provider
@@ -88,7 +88,7 @@ async function getAccount(signer) {
     return account
 }
 
-async function getNetwork(provider) {
+export async function getNetwork(provider) {
     let network = await provider.getNetwork()
     console.log({ network })
     return network

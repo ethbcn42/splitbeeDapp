@@ -4,20 +4,36 @@ import chakra, {
     Modal, ModalOverlay, ModalContent, ModalHeader, HStack
 } from '@chakra-ui/react';
 import { networks } from '@/utils/constants';
-import { switchNetwork, addNetwork } from '@/store/slices/web3/utils/connectUser';
+import { switchNetwork, addNetwork, getProvider, getNetwork } from '@/store/slices/web3/utils/connectUser';
 import Image from 'next/image';
-import { useState } from "react";
+import { useEffect, useState } from "react";
 
 export const NetworkSelector = () => {
     const toast = useToast()
     const { address, network } = useSelector(state => state.web3)
     const { isOpen, onOpen, onClose } = useDisclosure();
+    const provider = getProvider(window.ethereum);
     const [selectNetwork, setSelectNetwork] = useState(
         {
             logo: undefined,
-            text: 'Choose network'
+            text: "Choose a network",
         }
     );
+
+    useEffect(() => {
+        async function asyncCall() {
+            const net = await getNetwork(provider);
+            console.log({ net });
+            const chainId = parseInt(net.chainId);
+            console.log(chainId)
+            setSelectNetwork({
+                ...selectNetwork,
+                logo: networks[chainId].logo,
+                text: networks[chainId].chainName,
+            })
+        }
+        asyncCall();
+    }, []);
 
     const switchNet = async (chainId) => {
         //TOFIX: no está saltando metamask :(
@@ -45,7 +61,7 @@ export const NetworkSelector = () => {
                 position: 'top'
             })
         }
-        await switchNetwork(window.ethereum, chainId);
+        await addNetwork(window.ethereum, chainId);
     }
 
 
