@@ -2,6 +2,7 @@
 import {
   Box,
   Flex,
+  Grid,
   HStack,
   Text,
 } from '@chakra-ui/react';
@@ -26,20 +27,23 @@ const Header = () => {
   return (
     <>
       <Box shadow={"lg"} px={4}>
-        <Flex h={16} alignItems="center" justifyContent={'space-between'}>
+        <HStack h={16} alignItems="center" justifyContent={'space-between'}>
           <Logo />
-          <HStack spacing={8} alignItems={'center'}>
+          <Flex w={{base: "auto", md: "100%"}} p={{base: "0", md: "4" }} justifyContent="end">
+
             <Link href={"/setup"}>
-              <Text cursor={"pointer"} as="a">
+              <Text textDecoration={"underline"}  cursor={"pointer"} as="a">
                 Setup
               </Text>
             </Link>
+          </Flex>
+          <HStack spacing={8} alignItems={'center'}>
             <HStack spacing={2} alignItems={'center'}>
               <NetworkSelector />
               <ConnectButtonWeb3 />
             </HStack>
           </HStack>
-        </Flex>
+        </HStack>
       </Box>
     </>
   );
