@@ -82,5 +82,18 @@ export const networks = {
         blockExplorerUrls: ["https://explorer.celo.org/"],
         logo: "/web3/celo.svg",
         img: "/web3/celo.png"
+    },
+    100: {
+        chainId: "0x64",
+        chainName: "Gnosis Chain",
+        nativeCurrency: {
+            name: "xDAI",
+            symbol: "xDAI",
+            decimals: 18
+        },
+        rpcUrls: ["https://dai.poa.network"],
+        blockExplorerUrls: ["https://blockscout.com/xdai/mainnet/"],
+        logo: "/web3/gnosis.svg",
+        img: "/web3/gnosis.png"
     }
 }
