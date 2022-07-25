@@ -5,6 +5,7 @@ import {
   Grid,
   HStack,
   Text,
+  useColorModeValue,
 } from '@chakra-ui/react';
 //import ConnectButtonWeb3 from './Web3/ConnectButton';
 
@@ -25,8 +26,8 @@ const NetworkSelector = dynamic(() => import('./Web3/NetworkSelector'), {
 
 const Header = () => {
   return (
-    <>
-      <Box shadow={"lg"} px={4}>
+    
+      <Box as="header" bg={useColorModeValue('#ffffff', '#000000')} shadow={"lg"} px={4}>
         <HStack h={16} alignItems="center" justifyContent={'space-between'}>
           <Logo />
           <Flex w={{base: "auto", md: "100%"}} p={{base: "0", md: "4" }} justifyContent="end">
@@ -45,7 +46,6 @@ const Header = () => {
           </HStack>
         </HStack>
       </Box>
-    </>
   );
 }
 

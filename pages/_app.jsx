@@ -8,6 +8,8 @@ import { store } from "@store";
 import { Provider } from "react-redux";
 
 
+import "@/styles/global.css";
+
 import 'react-toastify/dist/ReactToastify.css';
 
 
