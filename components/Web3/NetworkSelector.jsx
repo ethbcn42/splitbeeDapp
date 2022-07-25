@@ -1,7 +1,7 @@
 import { useSelector } from 'react-redux';
 import chakra, {
     Button, useToast, ModalBody, ModalCloseButton, useDisclosure,
-    Modal, ModalOverlay, ModalContent, ModalHeader, HStack
+    Modal, ModalOverlay, ModalContent, ModalHeader, Stack
 } from '@chakra-ui/react';
 import { networks } from '@/utils/constants';
 import { switchNetwork, addNetwork, getProvider, getNetwork } from '@/store/slices/web3/utils/connectUser';
@@ -53,7 +53,6 @@ export const NetworkSelector = () => {
     }, []);
 
     const switchNet = async (chainId) => {
-        //TOFIX: no está saltando metamask :(
         if (!window.ethereum) {
             return toast({
                 title: 'Metamask is not installed',
@@ -67,7 +66,6 @@ export const NetworkSelector = () => {
         await switchNetwork(window.ethereum, chainId, toast);
     }
     const addNet = async (chainId) => {
-        //TOFIX: no está saltando metamask :(
         if (!window.ethereum) {
             return toast({
                 title: 'Metamask is not installed',
@@ -101,7 +99,7 @@ export const NetworkSelector = () => {
                         {Object.keys(networks).map((chain) => {
                             const { chainName: name, chainId, logo } = networks[chain];
                             return (
-                                <HStack>
+                                <Stack direction={'row'}>
                                     <Button
                                         leftIcon={<Image width="20" height="20" src={logo} />}
                                         key={chainId}
@@ -126,7 +124,7 @@ export const NetworkSelector = () => {
                                     >
                                         [✚]
                                     </Button>
-                                </HStack>
+                                </Stack>
                             )
                         })}
                     </ModalBody>
