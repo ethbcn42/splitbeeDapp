@@ -91,7 +91,7 @@ export const networks = {
             symbol: "xDAI",
             decimals: 18
         },
-        rpcUrls: ["https://dai.poa.network"],
+        rpcUrls: ["https://rpc.gnosischain.com/"],
         blockExplorerUrls: ["https://blockscout.com/xdai/mainnet/"],
         logo: "/web3/gnosis.svg",
         img: "/web3/gnosis.png"
