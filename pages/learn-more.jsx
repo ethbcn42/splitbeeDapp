@@ -16,7 +16,7 @@ import CreateSplitter from '@components/CreateSplitter';
 const setup = () => {
     return (
         <MainLayout>
-            <h1>SET UP!</h1>
+            <h1>SPONSOR PAGE</h1>
         </MainLayout>
     )
 }

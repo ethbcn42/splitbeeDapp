@@ -49,11 +49,15 @@ export default function CallToActionWithAnnotation() {
           Splitbee its a free, friendly & open-source platform that automatizes the process of splitting prizes of hackathons between mates and perform donations to non-profit organizations. Splitbee its a free, friendly & open-source platform that automatizes the process of splitting prizes of hackathons between mates and perform donations to non-profit organizations.
           </Text>
           <Stack
-            direction={'row'}
-            spacing={3}
+            direction={{
+              base: 'column',
+              md: 'row'
+            }}
+            spacing={6}
             align={'center'}
             alignSelf={'center'}
-            position={'relative'}>
+            position={'relative'}
+            >
             <Button
               as={Link}
               variant={'outline'}
