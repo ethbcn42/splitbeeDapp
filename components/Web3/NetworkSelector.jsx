@@ -96,10 +96,10 @@ export const NetworkSelector = () => {
                     <ModalHeader>Choose your prefer network</ModalHeader>
                     <ModalCloseButton />
                     <ModalBody>
-                        {Object.keys(networks).map((chain) => {
+                        {Object.keys(networks).map((chain, index) => {
                             const { chainName: name, chainId, logo } = networks[chain];
                             return (
-                                <Stack direction={'row'}>
+                                <Stack key={`network-${index}`} direction={'row'}>
                                     <Button
                                         leftIcon={<Image width="20" height="20" src={logo} />}
                                         key={chainId}
