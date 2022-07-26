@@ -30,14 +30,7 @@ const Header = () => {
       <Box as="header" bg={useColorModeValue('#ffffff', '#000000')} shadow={"lg"} px={4}>
         <HStack h={16} alignItems="center" justifyContent={'space-between'}>
           <Logo />
-          <Flex w={{base: "auto", md: "100%"}} p={{base: "0", md: "4" }} justifyContent="end">
-
-            <Link href={"/setup"}>
-              <Text textDecoration={"underline"}  cursor={"pointer"} as="a">
-                Setup
-              </Text>
-            </Link>
-          </Flex>
+          
           <HStack spacing={8} alignItems={'center'}>
             <HStack spacing={2} alignItems={'center'}>
               <NetworkSelector />
