@@ -55,7 +55,6 @@ export default function CallToActionWithAnnotation() {
             position={'relative'}>
             <Button
               as={Link}
-              variantColor={'#FFBD33'}
               variant={'outline'}
               rounded={'full'}
               color="#FFBD33"
@@ -73,7 +72,6 @@ export default function CallToActionWithAnnotation() {
             <Button
               as={Link}
               size={'lg'}
-              variantColor={'#FFBD33'}
               variant={'outline'}
               rounded={'full'}
               color="#FFBD33"
