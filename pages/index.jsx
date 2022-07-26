@@ -10,6 +10,7 @@ import {
   useColorModeValue,
   createIcon,
   Link,
+  Flex,
 } from '@chakra-ui/react';
 import { useRouter } from 'next/router';
 
@@ -35,19 +36,22 @@ export default function CallToActionWithAnnotation() {
           spacing={{ base: 8, md: 14 }}
           py={36}>
           <Heading
-            fontWeight={600}
+            fontWeight={300}
             fontSize={{ base: '2xl', sm: '4xl', md: '6xl' }}
             color={'#ffffff'}
             lineHeight={'110%'}>
-            Conquer <br />
+            CONQUER <br />
             &
-            <Text as={'span'} color={'#FFBD33'}>
-              Divide
+            <Text as={'span'} color={'#FFBD33'} fontWeight={600} lineHeight={'100%'}>
+              DIVIDE
             </Text>
           </Heading>
-          <Text color={'gray.50'} shadow="lg" textShadow={"lg"}>
-          Splitbee its a free, friendly & open-source platform that automatizes the process of splitting prizes of hackathons between mates and perform donations to non-profit organizations. Splitbee its a free, friendly & open-source platform that automatizes the process of splitting prizes of hackathons between mates and perform donations to non-profit organizations.
+
+          <Text color={'gray.50'} shadow="lg" textShadow={"lg"} fontWeight="400" textAlign={"center"}>
+            Splitbee its a free, friendly & open-source platform that automatizes the process of splitting prizes of hackathons between mates and perform donations to non-profit organizations.
+            The hum of bees is the voice of the garden
           </Text>
+
           <Stack
             direction={{
               base: 'column',
@@ -57,7 +61,7 @@ export default function CallToActionWithAnnotation() {
             align={'center'}
             alignSelf={'center'}
             position={'relative'}
-            >
+          >
             <Button
               as={Link}
               variant={'outline'}

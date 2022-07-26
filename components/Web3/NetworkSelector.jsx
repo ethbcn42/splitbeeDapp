@@ -88,7 +88,7 @@ export const NetworkSelector = () => {
                 m=".5"
                 onClick={handleOpen}
             >
-                {selectNetwork.logo ? <img width="20" src={selectNetwork.logo} /> : selectNetwork.text}
+                {selectNetwork.logo ? <Image  width="24" height="24" src={selectNetwork.logo} /> : selectNetwork.text}
             </Button>
             <Modal isOpen={isOpen} onClose={onClose}>
                 <ModalOverlay />
